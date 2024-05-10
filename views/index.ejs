@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html >
+    <head>
+        <title>Weather App</title>
+        <link rel="stylesheet" type="text/css" href="main.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    </head>
+    <body>
+        <% if (locals.result) { %>  
+        <div class="weatherApp">   
+            <div class="inputContainer">
+                <form class="search-form" action="/" method="POST">
+                    <input class="city-input" type="text" name="cityName" placeholder="Enter city name">
+                    <button class="searchButton" type="submit"><i class="material-icons">search</i></button>
+                </form> 
+            </div>
+            
+            <div class="city-date-section">
+                <h2 class="city"><%=result.name%></h2>
+                <p class="date"><%= currentDate %></p>
+            </div>
+            <div class="temprature-info">
+                <div class="discription">
+                    <i class="material-icons"><%=Cweathericon %></i>
+                    <p class="description-text"><%= result.weather[0].description%></p>
+                </div>
+                <div class="temp"><%=Math.floor(result.main.temp) %>°C</div>
+            </div>
+            <div class="additional-info">
+                <div>        
+                    <div class="wind-info">
+                        <i class="material-icons">air</i> 
+                        <h3 class="wind-speed"><%=result.wind.speed%> km/hr</h3>
+                        <p class="wind-lebel">Wind</p>
+                    </div>
+                </div>   
+                <div>                     
+                    <div class="humidity-info">
+                        <i class="material-icons"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M491-200q12-1 20.5-9.5T520-230q0-14-9-22.5t-23-7.5q-41 3-87-22.5T343-375q-2-11-10.5-18t-19.5-7q-14 0-23 10.5t-6 24.5q17 91 80 130t127 35ZM480-80q-137 0-228.5-94T160-408q0-100 79.5-217.5T480-880q161 137 240.5 254.5T800-408q0 140-91.5 234T480-80Zm0-80q104 0 172-70.5T720-408q0-73-60.5-165T480-774Q361-665 300.5-573T240-408q0 107 68 177.5T480-160Zm0-320Z"/></svg></i> 
+                        <h3 class="humodity"><%=result.main.humidity%></h3>
+                        <p class="humidity-lebel">Humidity</p>
+                    </div>
+                </div> 
+                <div>                 
+                    <div class="visibility-info">
+                        <i class="visibility-distance"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z"/></svg></i> 
+                        <h3 class="wind-speed"><%=((result.visibility)/1000 )%> miles</h3>
+                        <p class="visibility-lebel">Visibility</p>
+                    </div>
+                </div>                   
+            </div>
+      
+        </div>
+        <h4 class="copyright">Made with <i><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#EA3323"><path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"/></svg></i> from Ritesh</h4>
+        <% } else { %>
+            <!-- Display error message or fallback content -->
+            <h1>Error retrieving weather information</h1>
+        <% } %>
+
+    </body>
+</html>
